@@ -201,8 +201,8 @@ west update
 编辑 `build.yaml` 文件，添加：
 
 > [!NOTE]
-> 1. 如果您使用（默认）无适配器的 cornix，请选择 "cornix_left"、"cornix_right" 和 "reset"。
-> 2. 如果您将 cornix 与适配器一起使用，请选择 "cornix_dongle"。"cornix_left_for_dongle"、"cornix_right" 和 "reset"。
+> 1. 如果您使用（默认）无适配器的 cornix，请选择 "cornix_left//zmk"、"cornix_right//zmk" 和 "reset"。
+> 2. 如果您将 cornix 与适配器一起使用，请选择 "cornix_dongle"。"cornix_left_for_dongle"、"cornix_right//zmk" 和 "reset"。
 > 3. 添加 "cornix_indicator" 扩展板以启用 RGB led 灯。它消耗更多电量，使用风险自负。
 
 ```yaml
@@ -213,20 +213,20 @@ include:
     snippet: studio-rpc-usb-uart
     artifact-name: cornix_dongle
 
-  - board: cornix_ph_left
+  - board: cornix_ph_left//zmk
     # shield: cornix_indicator
     artifact-name: cornix_left_for_dongle
 
   # 使用不带适配器的 cornix
-  - board: cornix_left
+  - board: cornix_left//zmk
     # shield: cornix_indicator
     artifact-name: cornix_left
 
-  - board: cornix_right
+  - board: cornix_right//zmk
     # shield: cornix_indicator
     artifact-name: cornix_right
 
-  - board: cornix_right
+  - board: cornix_right//zmk
     shield: settings_reset
     artifact-name: reset
 ```
@@ -341,8 +341,8 @@ projects:
 
 3. **构建固件**：
    ```bash
-   west build -b cornix_left
-   west build -b cornix_right
+   west build -b cornix_left//zmk
+   west build -b cornix_right//zmk
    ```
 
 此方法允许您使用 Cornix 扩展板而不修改您现有 ZMK 配置的 west.yaml 文件。

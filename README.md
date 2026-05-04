@@ -206,8 +206,8 @@ west update
 Edit the `build.yaml` file, add:
 
 > [!NOTE]
-> 1. If you are using (default) cornix without dongle, choose "cornix_left", "cornix_right" and "reset".
-> 2. If you are using cornix with dongle, choose "cornix_dongle". "cornix_left_for_dongle", "cornix_right" and "reset".
+> 1. If you are using (default) cornix without dongle, choose "cornix_left//zmk", "cornix_right//zmk" and "reset".
+> 2. If you are using cornix with dongle, choose "cornix_dongle". "cornix_left_for_dongle", "cornix_right//zmk" and "reset".
 > 3. Add "cornix_indicator" shield to enable RGB led light. It consumes much more power, use at your own risk.
 
 ```yaml
@@ -218,20 +218,20 @@ include:
     snippet: studio-rpc-usb-uart
     artifact-name: cornix_dongle
 
-  - board: cornix_ph_left
+  - board: cornix_ph_left//zmk
     # shield: cornix_indicator
     artifact-name: cornix_left_for_dongle
 
   # Use cornix without dongle
-  - board: cornix_left
+  - board: cornix_left//zmk
     # shield: cornix_indicator
     artifact-name: cornix_left
 
-  - board: cornix_right
+  - board: cornix_right//zmk
     # shield: cornix_indicator
     artifact-name: cornix_right
 
-  - board: cornix_right
+  - board: cornix_right//zmk
     shield: settings_reset
     artifact-name: reset
 ```
@@ -342,12 +342,8 @@ If you prefer to build this project locally without adding it as a dependency in
 
 3. **Build the firmware**:
    ```bash
-<<<<<<< HEAD
-   west build -b cornix_main_left
-=======
-   west build -b cornix_left
->>>>>>> 16dcccb (migrate to zephyr4 , disable dongle screen)
-   west build -b cornix_right
+   west build -b cornix_left//zmk
+   west build -b cornix_right//zmk
    ```
 
 This method allows you to use the Cornix shield without modifying your existing ZMK configuration's west.yaml file.
